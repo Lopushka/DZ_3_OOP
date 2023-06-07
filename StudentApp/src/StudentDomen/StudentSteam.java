@@ -17,7 +17,7 @@ public class StudentSteam implements Iterable<StudentGroup> {
      */
     public StudentSteam(int numder) {
         this.teams = new ArrayList<>();
-        this.idgrop = idgrop;
+        this.idgrop = numder;
     }
 
     /**

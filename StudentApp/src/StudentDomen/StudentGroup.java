@@ -3,19 +3,33 @@ package StudentDomen;
 import java.util.Iterator;
 import java.util.List;
 
-public class StudentGroup implements Iterable<Student> {
-    private List<Student> students;
+public class StudentGroup implements Iterable<Student>,Comparable<StudentGroup> {
+    private List<Student> group;
+    private long groupid;
 
-    public StudentGroup(List<Student> students) {
-        this.students = students;
+    /**
+     * @param students список студ.
+     * @param groupid  номер гр.
+     */
+    public StudentGroup(List<Student> students, long groupid) {
+        this.group = students;
+        this.groupid = groupid;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Student> getGroup() {
+        return group;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setGroup(List<Student> students) {
+        this.group = students;
+    }
+
+    public long getGroupid() {
+        return groupid;
+    }
+
+    public void setGroupid(long groupid) {
+        this.groupid = groupid;
     }
 
     /**
@@ -29,7 +43,7 @@ public class StudentGroup implements Iterable<Student> {
 
             @Override
             public boolean hasNext() {
-                return cnt < students.size();
+                return cnt < group.size();
             }
 
             @Override
@@ -37,11 +51,36 @@ public class StudentGroup implements Iterable<Student> {
                 if (!hasNext()) {
                     return null;
                 }
-                return students.get(cnt++);
+                return group.get(cnt++);
             }
         };
 
         // return new SGIterator(students);
     }
 
+    @Override
+    public int compareTo(StudentGroup o) {
+        if (this.group.size() == o.getGroup().size()) {
+            return 0;
+        }
+        if (this.group.size() < o.getGroup().size()) {
+            return -1;
+        }
+        return 1;
+    }
+
+    public void addStudent(Object byId) {
+    }
+
+    public char[] getName() {
+        return null;
+    }
+
+    @Override
+    public String toString() {
+        return "StudentGroup{" +
+                "group = " + group +
+                ", idGroup = " + groupid +
+                '}';
+    }
 }
